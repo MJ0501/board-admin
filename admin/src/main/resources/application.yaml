@@ -41,6 +41,12 @@ spring:
             token-uri: https://kauth.kakao.com/oauth/token
             user-info-uri: https://kapi.kakao.com/v2/user/me
             user-name-attribute: id
+
+# localhost8081/actuator/env 에서 masking 값 보는 설정. 배포시에는 삭제할 것!
+management:
+  endpoint:
+    env:
+      show-values: ALWAYS
 ---
 spring:
   config.activate.on-profile: test

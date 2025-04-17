@@ -18,25 +18,37 @@ public record BoardAdminPrincipal(
         String email, String nickname, String memo, Map<String, Object> oAuth2Attributes) implements UserDetails, OAuth2User {
 
     public static BoardAdminPrincipal of(String username, String password, Set<RoleType> roleTypes, String email, String nickname, String memo){
-        return BoardAdminPrincipal.of(username, password, roleTypes, email, nickname, memo, Map.of());
+        return BoardAdminPrincipal.of(
+                username, password,
+                roleTypes, email, nickname, memo, Map.of());
     }
 
     public static BoardAdminPrincipal of(String username, String password, Set<RoleType> roleTypes, String email, String nickname, String memo, Map<String, Object> oAuth2Attributes) {
-        return new BoardAdminPrincipal(username, password,
-                roleTypes.stream().map(RoleType::getRoleName)
+        return new BoardAdminPrincipal(
+                username, password,
+                roleTypes.stream()
+                        .map(RoleType::getRoleName)
                         .map(SimpleGrantedAuthority::new)
                         .collect(Collectors.toUnmodifiableSet()),
                 email,nickname,memo, oAuth2Attributes);
     }
 
     public static BoardAdminPrincipal from(UserAccountDto dto) {
-        return BoardAdminPrincipal.of(dto.userId(), dto.userPassword(), dto.roleTypes(),dto.email(), dto.nickname(), dto.memo());
+        return BoardAdminPrincipal.of(
+                dto.userId(), dto.userPassword(),
+                dto.roleTypes(),
+                dto.email(), dto.nickname(), dto.memo());
     }
 
     public UserAccountDto toDto() {
-        return UserAccountDto.of(username, password, authorities.stream().map(GrantedAuthority::getAuthority).map(RoleType::valueOf).collect(Collectors.toUnmodifiableSet()), email, nickname, memo);
+        return UserAccountDto.of(
+                username, password,
+                authorities.stream()
+                        .map(GrantedAuthority::getAuthority)
+                        .map(RoleType::valueOf)
+                        .collect(Collectors.toUnmodifiableSet()),
+                email, nickname, memo);
     }
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

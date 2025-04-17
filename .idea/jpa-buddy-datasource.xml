@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JpbDataSourceConfig">
+    <data-sources>
+      <data-source id="e62a9d9f-9dbc-46a7-9572-e146279b18fb" name="board@localhost" url="jdbc:mysql://localhost:3307/board?useSSL=false&amp;allowMultiQueries=true&amp;serverTimezone=UTC" driverClass="com.mysql.cj.jdbc.Driver" />
+      <data-source id="1c511896-f0f4-4d59-9964-018c215b8d55" name="admin@localhost" url="jdbc:mysql://localhost:3307/admin?useSSL=false&amp;allowMultiQueries=true&amp;serverTimezone=UTC" driverClass="com.mysql.cj.jdbc.Driver" />
+    </data-sources>
+    <data-source-infos>
+      <data-source-info id="" persistence-unit-name="Default" />
+      <data-source-info id="1c511896-f0f4-4d59-9964-018c215b8d55" persistence-unit-name="admin" />
+      <data-source-info id="e62a9d9f-9dbc-46a7-9572-e146279b18fb" persistence-unit-name="board" />
+    </data-source-infos>
+  </component>
+</project>
